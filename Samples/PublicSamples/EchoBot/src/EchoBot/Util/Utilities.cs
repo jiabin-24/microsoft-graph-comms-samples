@@ -72,7 +72,7 @@ namespace EchoBot.Util
         public static X509Certificate2 GetCertificateFromStore(string certificateThumbprint)
         {
 
-            X509Store store = new X509Store(StoreName.My, StoreLocation.LocalMachine);
+            X509Store store = new(StoreName.My, StoreLocation.LocalMachine);
             store.Open(OpenFlags.ReadOnly);
             try
             {

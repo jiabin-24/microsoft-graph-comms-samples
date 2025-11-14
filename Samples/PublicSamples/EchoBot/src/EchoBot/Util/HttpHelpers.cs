@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : EchoBot.Util
-// Author           : bcage29
-// Created          : 09-07-2020
-//
-// Last Modified By : bcage29
-// Last Modified On : 02-28-2022
-// ***********************************************************************
-// <copyright file="HttpHelpers.cs" company="Microsoft">
-//     Copyright ©  2023
-// </copyright>
-// <summary></summary>
-// ***********************************************************************>
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace EchoBot.Util
 {
@@ -30,7 +17,7 @@ namespace EchoBot.Util
             {
                 Scheme = req.Scheme,
                 Host = req.Host.Host,
-                Port = req.Host.Port.Value,
+                Port = req.Host.Port!.Value,
                 Path = req.PathBase.Add(req.Path),
                 Query = req.QueryString.ToString()
             }.Uri);
@@ -45,7 +32,7 @@ namespace EchoBot.Util
             => msg.Set(m => m.Content = new StreamContent(req.Body));
 
         private static HttpRequestMessage SetContentType(this HttpRequestMessage msg, HttpRequest req)
-            => msg.Set(m => m.Content.Headers.Add("Content-Type", req.ContentType), applyIf: req.Headers.ContainsKey("Content-Type"));
+            => msg.Set(m => m.Content!.Headers.Add("Content-Type", req.ContentType), applyIf: req.Headers.ContainsKey("Content-Type"));
 
         private static HttpRequestMessage Set(this HttpRequestMessage msg, Action<HttpRequestMessage> config, bool applyIf = true)
         {

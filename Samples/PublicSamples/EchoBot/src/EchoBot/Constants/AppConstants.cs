@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : EchoBot.Constants
-// Author           : JasonTheDeveloper
-// Created          : 10-27-2023
-//
-// Last Modified By : bcage29
-// Last Modified On : 10-27-2023
-// ***********************************************************************
-// <copyright file="AppConstants.cs" company="Microsoft">
-//     Copyright ©  2023
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-namespace EchoBot.Constants
+﻿namespace EchoBot.Constants
 {
     /// <summary>
     /// Class AzureConstants.

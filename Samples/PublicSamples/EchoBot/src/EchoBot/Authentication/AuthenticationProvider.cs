@@ -1,29 +1,21 @@
-﻿// <copyright file="AuthenticationProvider.cs" company="Microsoft Corporation">
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
+﻿using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Security.Claims;
+using System.Threading;
+using System.Threading.Tasks;
+using EchoBot.Constants;
+using Microsoft.Graph.Communications.Client.Authentication;
+using Microsoft.Graph.Communications.Common;
+using Microsoft.Graph.Communications.Common.Telemetry;
+using Microsoft.Identity.Client;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 
-// THIS CODE HAS NOT BEEN TESTED RIGOROUSLY.USING THIS CODE IN PRODUCTION ENVIRONMENT IS STRICTLY NOT RECOMMENDED.
-// THIS SAMPLE IS PURELY FOR DEMONSTRATION PURPOSES ONLY.
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.
 namespace EchoBot.Authentication
 {
-    using System;
-    using System.IdentityModel.Tokens.Jwt;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
-    using System.Security.Claims;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using EchoBot.Constants;
-    using Microsoft.Graph.Communications.Client.Authentication;
-    using Microsoft.Graph.Communications.Common;
-    using Microsoft.Graph.Communications.Common.Telemetry;
-    using Microsoft.Identity.Client;
-    using Microsoft.IdentityModel.Protocols;
-    using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-    using Microsoft.IdentityModel.Tokens;
-
     /// <summary>
     /// The authentication provider for this bot instance.
     /// </summary>
@@ -180,7 +172,7 @@ namespace EchoBot.Authentication
             try
             {
                 // Now validate the token. If the token is not valid for any reason, an exception will be thrown by the method
-                JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+                JwtSecurityTokenHandler handler = new();
                 claimsPrincipal = handler.ValidateToken(token, validationParameters, out _);
             }
 
@@ -206,7 +198,7 @@ namespace EchoBot.Authentication
                 return new RequestValidationResult { IsValid = false };
             }
 
-            request.Properties.Add(HttpConstants.HeaderNames.Tenant, tenantClaim.Value);
+            request!.Options.Set(new HttpRequestOptionsKey<string>(HttpConstants.HeaderNames.Tenant), tenantClaim.Value);
             return new RequestValidationResult { IsValid = true, TenantId = tenantClaim.Value };
         }
 

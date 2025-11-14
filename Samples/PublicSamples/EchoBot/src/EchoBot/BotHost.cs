@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : EchoBot
-// Author           : bcage29
-// Created          : 10-27-2023
-//
-// Last Modified By : bcage29
-// Last Modified On : 10-27-2023
-// ***********************************************************************
-// <copyright file="BotHost.cs" company="Microsoft">
-//     Copyright ©  2023
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using DotNetEnv.Configuration;
+﻿using DotNetEnv.Configuration;
 using EchoBot.Bot;
 using EchoBot.Util;
 using Microsoft.AspNetCore.Builder;
@@ -83,7 +70,7 @@ namespace EchoBot
 
             // Bot Settings Setup
             var botInternalHostingProtocol = "https";
-            if (appSettings.UseLocalDevSettings)
+            if (appSettings!.UseLocalDevSettings)
             {
                 // if running locally with ngrok
                 // the call signalling and notification will use the same internal and external ports
@@ -119,7 +106,7 @@ namespace EchoBot
                 $"{botInternalHostingProtocol}://{baseDomain}:{appSettings.BotInternalPort}/"
             };
 
-            builder.WebHost.UseUrls(callListeningUris.ToArray());
+            builder.WebHost.UseUrls([.. callListeningUris]);
 
             builder.WebHost.ConfigureKestrel(serverOptions =>
             {

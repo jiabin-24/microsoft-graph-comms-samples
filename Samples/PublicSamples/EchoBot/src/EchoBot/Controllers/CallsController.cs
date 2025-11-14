@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : EchoBot.Controllers
-// Author           : JasonTheDeveloper
-// Created          : 09-07-2020
-//
-// Last Modified By : bcage29
-// Last Modified On : 02-28-2022
-// ***********************************************************************
-// <copyright file="JoinCallController.cs" company="Microsoft">
-//     Copyright ©  2023
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using EchoBot.Bot;
+﻿using EchoBot.Bot;
 using EchoBot.Constants;
 using EchoBot.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -53,8 +40,8 @@ namespace EchoBot.Controllers
                 var values = new
                 {
                     CallId = call.Id,
-                    ScenarioId = call.ScenarioId,
-                    ThreadId = call.Resource.ChatInfo.ThreadId,
+                    call.ScenarioId,
+                    call.Resource!.ChatInfo!.ThreadId,
                     Port = _settings.BotInstanceExternalPort.ToString()
                 };
 

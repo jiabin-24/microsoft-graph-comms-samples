@@ -1,18 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : EchoBot.Services
-// Author           : JasonTheDeveloper
-// Created          : 09-07-2020
-//
-// Last Modified By : bcage29
-// Last Modified On : 10-17-2023
-// ***********************************************************************
-// <copyright file="BotMediaStream.cs" company="Microsoft Corporation">
-//     Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT license.
-// </copyright>
-// <summary>The bot media stream.</summary>
-// ***********************************************************************-
-using EchoBot.Media;
+﻿using EchoBot.Media;
 using EchoBot.Util;
 using Microsoft.Graph.Communications.Calls;
 using Microsoft.Graph.Communications.Calls.Media;
@@ -40,6 +26,7 @@ namespace EchoBot.Bot
         /// The audio socket
         /// </summary>
         private readonly IAudioSocket _audioSocket;
+
         /// <summary>
         /// The media stream
         /// </summary>
@@ -48,7 +35,7 @@ namespace EchoBot.Bot
         private readonly TaskCompletionSource<bool> audioSendStatusActive;
         private readonly TaskCompletionSource<bool> startVideoPlayerCompleted;
         private AudioVideoFramePlayerSettings audioVideoFramePlayerSettings;
-        private List<AudioMediaBuffer> audioMediaBuffers = new List<AudioMediaBuffer>();
+        private List<AudioMediaBuffer> audioMediaBuffers = [];
         private int shutdown;
         private readonly SpeechService _languageService;
 

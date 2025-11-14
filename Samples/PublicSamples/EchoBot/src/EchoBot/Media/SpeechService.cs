@@ -29,8 +29,10 @@ namespace EchoBot.Media
         private readonly SpeechConfig _speechConfig;
         private SpeechRecognizer _recognizer;
         private readonly SpeechSynthesizer _synthesizer;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="SpeechService" /> class.
+        /// </summary>
         public SpeechService(AppSettings settings, ILogger logger)
         {
             _logger = logger;
@@ -76,10 +78,7 @@ namespace EchoBot.Media
 
         public virtual void OnSendMediaBufferEventArgs(object sender, MediaStreamEventArgs e)
         {
-            if (SendMediaBuffer != null)
-            {
-                SendMediaBuffer(this, e);
-            }
+            SendMediaBuffer?.Invoke(this, e);
         }
 
         public event EventHandler<MediaStreamEventArgs> SendMediaBuffer;

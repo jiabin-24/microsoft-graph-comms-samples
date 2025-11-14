@@ -1,17 +1,4 @@
-﻿// ***********************************************************************
-// Assembly         : EchoBot.Bot
-// Author           : JasonTheDeveloper
-// Created          : 09-07-2020
-//
-// Last Modified By : bcage29
-// Last Modified On : 10-17-2023
-// ***********************************************************************
-// <copyright file="BotService.cs" company="Microsoft">
-//     Copyright ©  2023
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-using EchoBot.Authentication;
+﻿using EchoBot.Authentication;
 using EchoBot.Constants;
 using EchoBot.Models;
 using Microsoft.Extensions.Options;
@@ -114,7 +101,7 @@ namespace EchoBot.Bot
                 _graphLogger);
 
             var authProvider = new AuthenticationProvider(
-                name,
+                name!,
                 _settings.AadAppId,
                 _settings.AadAppSecret,
                 _graphLogger);
