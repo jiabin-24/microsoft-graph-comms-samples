@@ -374,7 +374,7 @@ resource VMSS 'Microsoft.Compute/virtualMachineScaleSets@2021-07-01' = {
               ]
               publisher: 'Microsoft.Powershell'
               type: 'DSC'
-              typeHandlerVersion: '2.*'
+              typeHandlerVersion: '2.24'
               autoUpgradeMinorVersion: true
               forceUpdateTag: deploymentTime
               settings: {
